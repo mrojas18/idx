@@ -12,7 +12,7 @@ class Inversion extends Model
     use HasFactory;
 
     protected $table = 'inversion';
-
+    
     public function cuenta() {
         return $this->belongsTo(Cuenta::class);
     }
