@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::table('inversion', function (Blueprint $table) {
             //
-            $table->string('operacion'); 
-            $table->dateTime('fecha');
+         
+           $table->string('operacion'); 
+           $table->dateTime('fecha');
         });
     }
 
@@ -23,9 +24,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('inversions', function (Blueprint $table) {
+        Schema::table('inversion', function (Blueprint $table) {
             //
-            $table->dropColumn(['operacion', 'fecha']); 
+            $table->dropColumn(['operacion', 'fecha',]); 
         });
     }
 };

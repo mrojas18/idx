@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inversion', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("accion_id")->references("id")->on("acciones");
+            $table->unsignedBigInteger("accion_id");
             $table->integer("cantidad"); 
             $table->double("cotizacion", 10); 
             $table->double("usd", 10); 

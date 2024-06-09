@@ -13,6 +13,18 @@ class Inversion extends Model
 
     protected $table = 'inversion';
     
+    protected $fillable = [
+        'accion_id',
+        'cantidad',
+        'cotizacion',
+        'usd',
+        'ars',
+        'cuenta_id',
+        'operacion',
+        'fecha'
+    ];
+
+
     public function cuenta() {
         return $this->belongsTo(Cuenta::class);
     }

@@ -62,6 +62,13 @@ class InversionCrudController extends CrudController
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');
          */
+        CRUD::field('accion_id')->type('select'); 
+        CRUD::field('cantidad')->type('number')->label('Cantidad'); 
+        CRUD::field('cotizacion')->type('number')->label('Precio de compra')->prefix("ARS"); 
+        CRUD::field('ars')->type('number')->label('Monto en ARS')->prefix("ARS"); 
+        CRUD::field('usd')->type('number')->label('Monto en USD')->prefix("USD"); 
+        CRUD::field('cuenta_id')->type('select')->label('Cuenta')->attribute("nombre"); 
+        CRUD::field('operacion')->type('radio')->label('Operación')->options(["C"=>"Compra", "V"=>"Venta"])->inline(true); 
     }
 
     /**

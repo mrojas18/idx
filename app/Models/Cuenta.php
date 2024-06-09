@@ -28,4 +28,9 @@ class Cuenta extends Model
 
         return $this->hasMany(Inversion::class, 'id_cuenta', 'id' );
     }
+
+    public function getNombreAttribute()
+    {
+        return $this->banco->nombre . ' ' . $this->moneda->value; // Accede al valor del Enum Moneda
+    }
 }
