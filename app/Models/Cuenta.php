@@ -24,9 +24,9 @@ class Cuenta extends Model
         return $this->belongsTo(Banco::class);
     }
 
-    public function inversiones(){
+    public function operaciones(){
 
-        return $this->hasMany(Inversion::class, 'id_cuenta', 'id' );
+        return $this->hasMany(Operacion::class, 'id_cuenta', 'id' );
     }
 
     public function getNombreAttribute()

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('acciones', function (Blueprint $table) {
+        Schema::table('instrumentos', function (Blueprint $table) {
             //
             $table->float('precio_usd')->nullable(); 
             $table->float('precio_ars')->nullable(); 

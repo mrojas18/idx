@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\InversionRequest;
+use App\Http\Requests\InstrumentoRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class InversionCrudController
+ * Class InstrumentoCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class InversionCrudController extends CrudController
+class InstrumentoCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class InversionCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Inversion::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/inversion');
-        CRUD::setEntityNameStrings('inversion', 'inversions');
+        CRUD::setModel(\App\Models\Instrumento::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/instrumento');
+        CRUD::setEntityNameStrings('instrumento', 'instrumentos');
     }
 
     /**
@@ -39,12 +39,17 @@ class InversionCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        //CRUD::setFromDb(); // set columns from db columns.
 
         /**
          * Columns can be defined using the fluent syntax:
          * - CRUD::column('price')->type('number');
          */
+        CRUD::column('nombre')->label("Nombre");
+        CRUD::column('ratio')->label("Ratio");
+        CRUD::column('ticker_usd')->label("Ticker USD");
+        CRUD::column('ticker_ars')->label("Ticker ARS");
+        
     }
 
     /**
@@ -55,20 +60,17 @@ class InversionCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(InversionRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
+        CRUD::setValidation(InstrumentoRequest::class);
+        //CRUD::setFromDb(); // set fields from db columns.
 
         /**
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');
          */
-        CRUD::field('accion_id')->type('select'); 
-        CRUD::field('cantidad')->type('number')->label('Cantidad'); 
-        CRUD::field('cotizacion')->type('number')->label('Precio de compra')->prefix("ARS"); 
-        CRUD::field('ars')->type('number')->label('Monto en ARS')->prefix("ARS"); 
-        CRUD::field('usd')->type('number')->label('Monto en USD')->prefix("USD"); 
-        CRUD::field('cuenta_id')->type('select')->label('Cuenta')->attribute("nombre"); 
-        CRUD::field('operacion')->type('radio')->label('Operación')->options(["C"=>"Compra", "V"=>"Venta"])->inline(true); 
+        CRUD::field('nombre')->label('Nombre'); 
+        CRUD::field('ratio')->label('Ratio')->type('number')->attributes(["step"=>"1"]); 
+        CRUD::field('ticker_ars')->label('Ticker ARS'); 
+        CRUD::field('ticker_usd')->label('Ticker USD'); 
     }
 
     /**
