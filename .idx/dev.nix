@@ -16,6 +16,9 @@
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
       # "vscodevim.vim"
+      "alexcvzz.vscode-sqlite"
+      "amiralizadeh9480.laravel-extra-intellisense"
+      "bmewburn.vscode-intelephense-client"
     ];
     # Enable previews and customize configuration
     previews = {
@@ -27,5 +30,9 @@
         };
       };
     };
+  };
+  services.mysql={
+    enable = true;
+    package= pkgs.mysql80; 
   };
 }
