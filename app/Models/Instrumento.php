@@ -18,4 +18,6 @@ class Instrumento extends Model
     public function operaciones(){
         return $this->hasMany(Operacion::class); 
     }
+
+    
 }

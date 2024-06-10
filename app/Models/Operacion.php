@@ -30,5 +30,14 @@ class Operacion extends Model
         return $this->belongsTo(Cuenta::class, "cuenta_id"); 
     }
 
+    public function getUsdActualAttribute(){
+        return $this->cantidad * $this->instrumento->precio_usd; 
+    }
+
+    public function getArsActualAttribute(){
+        return $this->cantidad * $this->instrumento->precio_ars ; 
+    }
+   
+
 
 }

@@ -47,14 +47,14 @@ return [
     'actionsColumnPriority' => 1,
 
     // Nest action buttons within a dropdown in actions column
-    'lineButtonsAsDropdown' => false,
+    'lineButtonsAsDropdown' => true,
 
     // Show a "Reset" button next to the List operation subheading
     // (Showing 1 to 25 of 9999 entries. Reset)
     // that allows the user to erase local storage for that datatable,
     // thus clearing any searching, filtering or pagination that has been
     // remembered and persisted using persistentTable
-    'resetButton' => true,
+    'resetButton' => false,
 
     // The query operator that is used to search on the table.
     // If you are using PostgreSQL you might want to change

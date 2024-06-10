@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\InstrumentoRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class InstrumentoCrudController
@@ -40,16 +41,16 @@ class InstrumentoCrudController extends CrudController
     protected function setupListOperation()
     {
         //CRUD::setFromDb(); // set columns from db columns.
-
+        Log::info("List Instrumentos"); 
         /**
          * Columns can be defined using the fluent syntax:
          * - CRUD::column('price')->type('number');
          */
         CRUD::column('nombre')->label("Nombre");
         CRUD::column('ratio')->label("Ratio");
-        CRUD::column('ticker_usd')->label("Ticker USD");
-        CRUD::column('ticker_ars')->label("Ticker ARS");
-        
+        CRUD::column('precio_ars')->label('ARS')->type('number')->decimals(2)->dec_point(",")->thousands_sep("."); 
+        CRUD::column('precio_usd')->label('USD')->type('number')->decimals(2)->dec_point(",")->thousands_sep("."); 
+        CRUD::column('updated_at')->label('Actualizado')->type('datetime');
     }
 
     /**
