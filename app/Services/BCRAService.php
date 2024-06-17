@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class CotizacionesService{
+class BCRAService{
     private $password; 
     private $username; 
     private $url; 
@@ -30,18 +30,10 @@ class CotizacionesService{
             
                             ;
         $response->throw();
-        $credenciales = $response->json(); 
-
-        $credenciales['expiracion']= now()->addSeconds($response['expires_in']); 
-        //dd($credenciales); 
-        //elimino las credenciales actuales 
-        //Cache::pull('credenciales'); 
-        //actualizo con los nuevos datos de las credenciales
-        Cache::put('credenciales', $credenciales, 60*15); 
-        return $credenciales; 
+       // $response->json(); 
 
         
-        
+        return $response->json(); 
     }
 
     public function refresh(){
@@ -61,18 +53,17 @@ class CotizacionesService{
         $credenciales['expiracion']= now()->addSeconds($response['expires_in']); 
         //dd($credenciales); 
         //elimino las credenciales actuales 
-        //Cache::pull('credenciales'); 
+        Cache::pull('credenciales'); 
         //actualizo con los nuevos datos de las credenciales
         Cache::put('credenciales', $credenciales, 60*15); 
         return $credenciales; 
     }
 
     public function getCredenciales(){
-        $credenciales = Cache::get('credenciales', false); 
-       
-        
-        if ($credenciales){
+        if (Cache::has('credeciales')){
+           $credenciales = Cache::get('credenciales'); 
            Log::info("Token existe"); 
+           Log::info((object)$credenciales); 
             // se se venció hago refresh 
             if(now()->gt($credenciales['expiracion'])){
                 Log::info("Token Vencido"); 

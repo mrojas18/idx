@@ -12,3 +12,4 @@ Route::get( '/test', function () {
 })->name('test'); 
 
 Route::get('/api/token', [CotizacionController::class, 'getToken']);
+Route::get('/reporte', [CotizacionController::class, 'reporte']);

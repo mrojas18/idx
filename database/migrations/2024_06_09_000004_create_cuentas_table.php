@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::table('cuentas', function (Blueprint $table) {
-            //
-            $table->dropColumn(['relacion']); 
-            $table->float('monto')->change();
+        Schema::create('cuentas', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId("banco_id")->references("id")->on("bancos");
+            $table->string("moneda");
+            $table->float('monto');
+            $table->string("relacion");
+            $table->timestamps();
         });
     }
 
@@ -24,11 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
-        Schema::table('cuentas', function (Blueprint $table) {
-            //
-            $table->string('relacion')->nullable(); 
-           
-        });
+        Schema::dropIfExists('cuentas');
     }
 };

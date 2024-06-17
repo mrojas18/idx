@@ -33,17 +33,7 @@ class OperacionCrudController extends CrudController
         CRUD::setModel(\App\Models\Operacion::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/operacion');
         CRUD::setEntityNameStrings('operacion', 'operacions');
-        CRUD::button('email')->stack('line')->view('crud::buttons.quick')->meta([
-            'access' => true,
-            'label' => 'Email',
-            'icon' => 'la la-envelope',
-            'wrapper' => [
-                'element' => 'a',
-                'href' => url('something'),
-                'target' => '_blank',
-                'title' => 'Send a new email to this user',
-            ]
-        ]);
+        
     }
 
     /**
@@ -54,7 +44,30 @@ class OperacionCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        
+        CRUD::button('update')->stack('top')->view('crud::buttons.quick')->meta([
+            'access' => true,
+            'label' => 'Actualizar',
+            'icon' => 'la la-sync',
+            'wrapper' => [
+               'element' => 'a',
+                'href' => url('/api/token'),
+                //'target' => '_blank',
+                'title' => 'Send a new email to this user',
+                /* 'href' => function ($entry, $crud) {
+                    return url("/api/token");
+                }, */
+                'ajax' => true, // <- just add `ajax` and it's ready to make ajax request
+            ],
+            'ajax' => [
+               // optional attributes
+                'method' => 'GET',
+                'refreshCrudTable' => true, // to refresh table on success
+                'success_title' => "Actualización de cotizaciones",
+                'success_message' => 'las cotizaciones se actualizaron correctamente',
+                'error_title' => 'Error',
+                'error_message' => 'There was an error sending the payment reminder. Please try again.',
+            ],
+        ]);
         //CRUD::setFromDb(); // set columns from db columns.
         // dynamic data to render in the following widget
         $sumaUsd = Operacion::sum("usd"); 

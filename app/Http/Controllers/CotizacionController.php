@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Instrumento;
+use App\Models\Operacion;
 use App\Services\CotizacionesService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -19,7 +20,7 @@ class CotizacionController extends Controller
     public function getToken(Request $request){
         
 
-        $acciones = Instrumento::all(); 
+        $acciones = Instrumento::whereHas('operaciones')->get(); 
 
         foreach($acciones as $accion){
             $response = $this->service->getCotizacion($accion->ticker_ars); 
@@ -35,5 +36,20 @@ class CotizacionController extends Controller
         
         
         return $response; 
+    }
+
+    public function reporte(){
+        $operacionesAgrupadas = Operacion::join('instrumentos', 'operacion.instrumento_id', '=', 'instrumentos.id') // Unir tablas
+        ->select('instrumento_id')
+        ->selectRaw('SUM(cantidad) as cantidad_total, SUM(cantidad * instrumentos.precio_usd) as total_usd_actual')
+        ->groupBy('instrumento_id')
+        ->get();
+
+        foreach ($operacionesAgrupadas  as  $operacion) {
+            echo $operacion->instrumento->nombre . " - ";
+            echo $operacion->cantidad_total . " - ";
+            echo number_format( $operacion->total_usd_actual, 2, ',', '.') . "\n<br>";
+            
+        }
     }
 }

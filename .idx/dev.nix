@@ -7,8 +7,10 @@
   packages = [
     pkgs.php82
     pkgs.php82Packages.composer
+    pkgs.php82Extensions.xdebug
     pkgs.nodejs_20
     pkgs.sqlite
+    pkgs.memcached
   ];
   # Sets environment variables in the workspace
   env = {};
