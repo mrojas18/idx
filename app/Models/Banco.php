@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\AsSource;
 
 class Banco extends Model
 {
-    use CrudTrait;
-    use HasFactory;
+    use HasFactory, AsSource;
+    
+    protected $table="bancos"; 
+
+    protected $fillable = ['nombre']; 
 
     public function cuentas() {
         return $this->hasMany(Cuenta::class);

@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('acciones', function (Blueprint $table) {
+        Schema::create('instrumentos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->string('ticker_usd');
             $table->string('ticker_ars'); 
+            $table->integer('ratio');
+            $table->float('precio_usd')->nullable(); 
+            $table->float('precio_ars')->nullable(); 
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('acciones');
+        Schema::dropIfExists('instrumentos');
     }
 };

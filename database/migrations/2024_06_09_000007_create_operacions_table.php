@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inversion', function (Blueprint $table) {
+        Schema::create('operacion', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("accion_id")->references("id")->on("acciones");
+            $table->foreignId("instrumento_id")->references("id")->on("instrumentos");
+            $table->date("fecha"); 
+            $table->string("tipo")->default("C");
             $table->integer("cantidad"); 
             $table->double("cotizacion", 10); 
             $table->double("usd", 10); 
             $table->double("ars", 10); 
             $table->foreignId("cuenta_id")->references("id")->on("cuentas");
+            
             $table->timestamps();
         });
     }
@@ -28,6 +31,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inversion');
+        
+        Schema::dropIfExists('operacion');
     }
 };

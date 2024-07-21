@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cuentas', function (Blueprint $table) {
+        Schema::create('categorias', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("banco_id")->references("id")->on("bancos");
-            $table->string("moneda");
-            $table->string("monto");
-            $table->string("relacion");
+            $table->string('nombre');
+            $table->string('tipo');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cuentas');
+        Schema::dropIfExists('categorias');
     }
 };
