@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "allowJs": true,
+      "checkJs": true,
+      "jsx": "preserve",
+      "target": "ESNext",
+      "module": "ESNext",
+      "moduleResolution": "Bundler",
+      "allowImportingTsExtensions": true
+    },
+    "vueCompilerOptions": {
+      "target": 3.5
+    },
+    "references": [
+        {
+          "path": "./tsconfig.node.json"
+        },
+        {
+          "path": "./tsconfig.app.json"
+        }
+      ]
+  }

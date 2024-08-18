@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Screen\AsSource;
 use App\Enums\TipoCategoria;
 
 class Categoria extends Model
 {
-    use HasFactory, AsSource;
+    use HasFactory;
 
     protected $fillable = [
         'nombre',

@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Orchid\Screen\AsSource;
 
 class Banco extends Model
 {
-    use HasFactory, AsSource;
+    use HasFactory;
     
     protected $table="bancos"; 
 

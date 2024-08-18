@@ -3,13 +3,11 @@
 namespace App\Models;
 
 use App\Enums\TipoOperacion;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Operacion extends Model
 {
-    use CrudTrait;
     use HasFactory;
 
     protected $table= "operacion"; 
